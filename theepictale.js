@@ -303,10 +303,7 @@ class Credits extends Phaser.Scene {
       gameState.active = true;
     gameState.player = this.add.sprite(config.width / 2, config.height / 2, 'codey_sled');
 
-      if(gameState.active === true){
-        gameState.music = this.sound.add('All in');
-       gameState.music.play();
-   }
+      
     this.anims.create({
       key: 'sled',
       frames: this.anims.generateFrameNumbers('codey_sled'),
