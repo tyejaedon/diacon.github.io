@@ -7,7 +7,7 @@ class Level extends Phaser.Scene {
       'Level2': 'Level3',
       'Level3': 'Level4',
       'Level4': 'Credits',
-      'credits':'Level1'
+      'credits':'Level1',
   }
 }
 
@@ -37,10 +37,7 @@ gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ff
     gameState.lava = this.physics.add.staticGroup()
 
    
-   if(gameState.active === true){
-        gameState.music = this.sound.add('All in');
-       gameState.music.play();
-   }
+   
     
  this.createAnimations();
 
@@ -55,12 +52,12 @@ this.cameras.main.setBounds(0, 0, gameState.bg3.width, gameState.bg3.height);
 
      this.physics.add.collider(gameState.player, gameState.platforms);
     this.physics.add.collider(gameState.goal, gameState.platforms);
-    this.physics.add.collider(gameState.player, gameState.lava);
+    
 
     gameState.cursors = this.input.keyboard.createCursorKeys();
   }
 
-createPlatform(xIndex, yIndex, xIndex1, yIndex1) {
+createPlatform(xIndex, yIndex) {
     // Creates a platform evenly spaced along the two indices.
     // If either is not a number it won't make a platform
       if (typeof yIndex === 'number' && typeof xIndex === 'number') {
@@ -68,7 +65,10 @@ createPlatform(xIndex, yIndex, xIndex1, yIndex1) {
 
 }
 }
-
+createLava(xIndex, yIndex, xIndex1, yIndex1){
+        gameState.lava.create(-50, 600, 'lava').refreshBody();
+}
+    
  createSnow() {
     gameState.particles = this.add.particles('snowflake');
 
@@ -152,6 +152,7 @@ createParallaxBackgrounds() {
  levelSetup() {
     for (const [xIndex, yIndex] of this.heights.entries()) {
       this.createPlatform(xIndex, yIndex);
+        this.createLava();
     } 
      // Create the campfire at the end of the level
 gameState.goal = this.physics.add.sprite(gameState.width - 40, 100, 'savepoint').setScale(1);
@@ -195,13 +196,15 @@ this.setWeather(this.weather);
       if (!gameState.player.body.touching.down){
         gameState.player.anims.play('jump', true);
       }
-      if (gameState.player.y > 1200) {
+        if (gameState.player.y > 1200) {
         this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
           if (progress > .9) {
             this.scene.restart(this.levelKey);
           }
         });
       }
+
+      
 
 }
 
@@ -257,7 +260,7 @@ setWeather(weather) {
 class Level1 extends Level {
   constructor() {
     super('Level1');
-    this.heights = [4, 7, 4, null, 2, 4, null, 4, 4];
+    this.heights = [4, 7, 4, null, 2, 4, null, 4, 4,null,2,5,null,6,5];
      this.weather = 'morning';
   }
 }
@@ -293,11 +296,17 @@ class Credits extends Phaser.Scene {
 
   preload() {
     this.load.spritesheet('codey_sled', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/codey_sled.png', { frameWidth: 81, frameHeight: 90 });
+       this.load.audio('All in','assets/song.mp3')
   }
 
   create() {
-    gameState.player = this.physics.add.sprite(config.width / 2, config.height / 2, 'codey_sled');
+      gameState.active = true;
+    gameState.player = this.add.sprite(config.width / 2, config.height / 2, 'codey_sled');
 
+      if(gameState.active === true){
+        gameState.music = this.sound.add('All in');
+       gameState.music.play();
+   }
     this.anims.create({
       key: 'sled',
       frames: this.anims.generateFrameNumbers('codey_sled'),
@@ -306,7 +315,7 @@ class Credits extends Phaser.Scene {
     })
 
     gameState.player.angle = 20;
-    this.add.text(150,150, 'created by Jaedon Munyua',{fontSize: '15px', fill: '000000'})
+    this.add.text(150,150, 'created by Jaedon Munyua',{fontSize: '50px', fill: '000000'})
     
   }
   levelsetup(){
@@ -323,6 +332,7 @@ this.scene.restart();﻿﻿﻿﻿ // restart current scene
 
   }
 }
+
 
 
 
