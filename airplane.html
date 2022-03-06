@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Airplane Booking Login</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="airplanes.js"></script>
+  <script type="text/javascript">
+      
+  </script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+</head>
+
+<body>
+   
+    <center>
+        <b><h1 class="heading">LOGIN - Airplane Bookings</h1></b>
+    
+                <input id="username" placeholder="username" type="text">
+                
+                <input type="password" id="password" placeholder="password">   
+
+            <br><br>
+            
+                <button id="button" onclick="fn1()" id="btn1">LOGIN</button>
+    </center> 
+    <center>
+        <br>
+        <br>
+    <h2>Dont have a login, request one</h2>
+
+    <form action="https://formsubmit.co/tyejaedon@gmail.com" method="POST">
+  
+    <fieldset>
+      <hr>
+        <div class="account-type">
+          <input type="radio" value="none" id="radioOne" name="account" checked/>
+          <label for="radioOne" class="radio">Personal</label>
+          <input type="radio" value="none" id="radioTwo" name="account" />
+          <label for="radioTwo" class="radio">Company</label>
+        </div>
+        <hr>
+  <label for="fname">First name:</label><br>
+
+  <label id="icon" for="name"><i class="fas fa-user"></i></label>
+
+  <input type="text" id="fname" name="fname" placeholder = "John" required><br>
+
+  <label for="lname">Last name:</label><br>
+
+  <label id="icon" for="name"><i class="fas fa-user"></i></label>
+
+  <input type="text" id="lname" name="lname" placeholder="Doe" required><br>
+
+  <label for = "email">Email</label><br>
+
+  <label id="icon" for="name"><i class="fas fa-envelope"></i></label>
+
+  <input type="email" id="email1" name="email" placeholder = "name@domain.com" required><br>
+
+  <hr>
+        <div class="gender">
+          <input type="radio" value="none" id="male" name="gender" checked required/>
+          <label for="male" class="radio">Male</label>
+          <input type="radio" value="none" id="female" name="gender" />
+          <label for="female" class="radio">Female</label>
+        </div>
+        <hr>
+
+  <button type="submit" onclick="sound()">SUBMIT</button>
+  
+</fieldset>
+</form> 
+</center>
+</body>
+</html>
